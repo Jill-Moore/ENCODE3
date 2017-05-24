@@ -1,9 +1,10 @@
-#Jill E. Moore
-#Weng Lab
-#UMass Medical School
-#Updated August 2016
+#!/bin/bash
 
+#Jill E. Moore - Jill.Elizabeth.Moore@gmail.com
+#Weng Lab - UMass Medical School
 #ENCODE Encyclopedia Version 4
+#Updated May 2017
+
 #Script for retreiving and ranking signal
 
 source ~/.bashrc
@@ -29,7 +30,7 @@ awk -F "\t" '{printf "%s\t%.0f\t%.0f\t%s\n", $1,$2-'$width',$3+'$width',$4}' \
 ~/bin/bigWigAverageOverBed -bedOut=out2.bed $dataDir/$experiment/$signal.bigWig \
     little out2
 
-python ~/Projects/ENCODE/Encyclopedia/Version4/log-normalization.py out2 > l
+python ~/Projects/ENCODE/Encyclopedia/Version4/log.normalization.py out2 > l
 
 sort -k2,2rg l | awk 'BEGIN {rank=0; before=0; running=1}{if ($2 != before) \
     rank = running; print $1 "\t" $2 "\t" $3 "\t" rank; before=$2; running += 1}'\

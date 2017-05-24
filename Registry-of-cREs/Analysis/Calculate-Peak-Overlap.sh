@@ -1,8 +1,9 @@
 #!/bin/bash
 
-#Jill Moore
-#Weng Lab
-#May 2017
+#Jill E. Moore - Jill.Elizabeth.Moore@gmail.com
+#Weng Lab - UMass Medical School
+#ENCODE Encyclopedia Version 4
+#Updated May 2017
 
 #./Calculate-Peak-Overlap.sh PeakList.txt cREs.bed
 

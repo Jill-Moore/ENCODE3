@@ -1,7 +1,10 @@
 #!/bin/bash
 #Author : Bob Thurman, Stam Lab
 
-#Modified 2016 - Jill Moore, Weng Lab, UMMS
+#Jill E. Moore - Jill.Elizabeth.Moore@gmail.com
+#Weng Lab - UMass Medical School
+#ENCODE Encyclopedia Version 4
+#Modified May 2017
 
 tmpd=./
 

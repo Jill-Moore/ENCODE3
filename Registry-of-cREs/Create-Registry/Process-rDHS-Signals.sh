@@ -1,9 +1,10 @@
 #!/bin/bash
 
-#Jill E. Moore
-#Weng Lab
-#UMass Medical School
+#Jill E. Moore - Jill.Elizabeth.Moore@gmail.com
+#Weng Lab - UMass Medical School
+#ENCODE Encyclopedia Version 4
 #Updated May 2017
+
 
 genome=hg19
 dataDir=/home/jm36w/Lab/Results/V4-"$genome"
