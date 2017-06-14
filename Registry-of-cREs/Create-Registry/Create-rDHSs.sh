@@ -6,9 +6,9 @@
 #Updated May 2017
 
 #Script for creating rDHSs given DNase-seq files
-
-dataDir=/project/umw_zhiping_weng/0_metadata/encode/data
-dataList=hg19-Hotspot-List.txt
+genome=hg19
+dataDir=/data/projects/encode/data
+dataList=$genome-Hotspot-List.txt
 
 
 l=$(wc -l $dataList  | awk '{print $1}')
@@ -26,7 +26,9 @@ do
     ~/bin/bigWigAverageOverBed $signal new.bed out.tab
     python ~/Projects/ENCODE/Encyclopedia/Version4/log.normalization.py out.tab > l
     sort -k1,1 out.tab > 1
-    paste new out.tab | awk '{print $1 "\t" $2 "\t" $3 "\t" $4 "\t" $5 "\t" $6 "\t" $14 "\t" 1 "\t" $9}' >> output
-    rm out.bed new bed out.tab
+    paste new out.tab | awk '{print $1 "\t" $2 "\t" $3 "\t" $4 "\t" $5 "\t" $6 "\t" $14 "\t" 1 "\t" $9}' >> tmp.bed
+    rm new bed out.tab l 1
 done
 
+./Cluster-DHSs.sh
+mv FINAL.bed $genome-rDHS-FDR3.bed
