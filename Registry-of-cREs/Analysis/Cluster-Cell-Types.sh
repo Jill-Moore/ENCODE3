@@ -13,26 +13,25 @@
 #BSUB -o "/home/jm36w/JobStats/%J.out"
 #BSUB -e "/home/jm36w/JobStats/%J.error"
 #BSUB -W 2:00
-#BSUB -J "Process-Control[1-72]"
-
+#BSUB -J "Process-Control[1-5]"
+#72
 source ~/.bashrc
 
 genome=mm10
-file=h3k4me3-embryo
+files=h3k4me3-embryo
 cres=/home/jm36w/Lab/Results/V4-$genome/$genome-cREs-Simple.bed
 outputDir=/home/jm36w/Lab/Results/V4-$genome/signal-output
 
 cd /home/jm36w/Lab/Results/V4-$genome/
-
-num=$(wc -l $file | awk '{print $1}')
+j=$LSB_JOBINDEX
+num=$(wc -l $files | awk '{print $1}')
 experiment=$(awk -F "\t" '{if (NR=='$j') print $1}' $files)
 signal=$(awk -F "\t" '{if (NR=='$j') print $2}' $files)
 tissue=$(awk -F "\t" '{if (NR=='$j') print $2}' $files)
-j=$LSB_JOBINDEX
 signalFile=$outputDir/$experiment"-"$signal.txt
 
 awk 'FNR==NR {x[$4];next} ($1 in x)' $cres $signalFile > $j.1.sig
-echo $T > col.$j
+echo $tissue > col.$j
 
 for i in $(seq $num)
 do
@@ -40,7 +39,7 @@ experiment=$(awk -F "\t" '{if (NR=='$i') print $1}' $files)
 signal=$(awk -F "\t" '{if (NR=='$i') print $2}' $files)
 signalFile=$outputDir/$experiment"-"$signal.txt
 awk 'FNR==NR {x[$4];next} ($1 in x)' $cres $signalFile > $j.2.sig
-python /home/jm36w/Projects/ENCODE/Encyclopedia/Version4/calculate-jaccard.py \
+python ~/scratch/Test/calculate-jaccard.py \
     $j.1.sig $j.2.sig >> col.$j
 done
 
