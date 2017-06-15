@@ -13,8 +13,8 @@
 #BSUB -o "/home/jm36w/JobStats/%J.out"
 #BSUB -e "/home/jm36w/JobStats/%J.error"
 #BSUB -W 2:00
-#BSUB -J "Process-Control[1-5]"
-#72
+#BSUB -J "Process-Control[1-72]"
+
 source ~/.bashrc
 
 genome=mm10
