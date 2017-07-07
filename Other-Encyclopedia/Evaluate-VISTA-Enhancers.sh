@@ -37,7 +37,7 @@ B=$(grep $tissue $signalMethod"-List.txt" | awk -F "\t" '{print $2}')
 ~/bin/bigWigAverageOverBed /data/projects/encode/data/$A/$B.bigWig bed \
     out.tab -bedOut=out.bed
 
-awk '{print $1 "\t" $2+'$width'-150 "\t" $3-'width'+150 "\t" $4 "\t" $5}' \
+awk '{print $1 "\t" $2+'$width'-150 "\t" $3-'$width'+150 "\t" $4 "\t" $5}' \
     out.bed | sort -k5,5rg | head -n $min > bed
 bedtools intersect -wo -a $tissue.bed -b bed > p
 
